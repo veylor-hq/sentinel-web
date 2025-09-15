@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { Activity, Shield, Target, Users, Database, AlertTriangle } from "lucide-react"
 import { API_CONFIG, getApiUrl } from "@/lib/api-config"
+import { useRouter } from 'next/navigation'
 
 interface DashboardProps {
   onLogout: () => void
@@ -17,6 +18,7 @@ export default function Dashboard({ onLogout }: DashboardProps) {
     systemStatus: string;
     lastLogin: string;
   } | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     // Fetch user data and dashboard stats
@@ -130,7 +132,10 @@ export default function Dashboard({ onLogout }: DashboardProps) {
                   </div>
                 </button>
 
-                <button className="border border-gray-800 p-4 text-left hover:border-white transition-colors group">
+                <button
+                  className="border border-gray-800 p-4 text-left hover:border-white transition-colors group"
+                  onClick={() => router.push('/missions')}
+                  >
                   <div className="flex items-center space-x-3">
                     <Database className="w-5 h-5 group-hover:text-white text-gray-400" />
                     <div>
@@ -147,11 +152,12 @@ export default function Dashboard({ onLogout }: DashboardProps) {
                 {/* Active Operations List */}
                 <div className="space-y-4">
                     <h2 className="text-xl font-bold uppercase tracking-wider border-l-2 border-white pl-4">ACTIVE OPERATIONS</h2>
-                    <div className="space-y-2 h-96 overflow-y-auto">
+                    <div className="space-y-2 max-h-96 overflow-y-auto">
                         {stats.activeMissions.length > 0 ? (
                             stats.activeMissions.map((mission) => (
                                 <div
                                     key={mission.id}
+                                    onClick={() => router.push(`/mission/${mission.id}`)}
                                     className="border border-gray-800 p-3 flex items-center justify-between hover:border-gray-600 transition-colors"
                                 >
                                     <div className="flex flex-col space-y-1">

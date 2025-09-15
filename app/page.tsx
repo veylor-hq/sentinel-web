@@ -3,16 +3,15 @@
 import { useState, useEffect } from "react"
 import LoginForm from "@/components/login-form"
 import Dashboard from "@/components/dashboard"
+import { API_CONFIG, getApiUrl } from "@/lib/api-config"
 
 export default function HomePage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Check if user is already authenticated
     const token = localStorage.getItem("auth_token")
     if (token) {
-      // Verify token with backend
       verifyToken(token)
     } else {
       setIsLoading(false)
@@ -21,17 +20,14 @@ export default function HomePage() {
 
   const verifyToken = async (token: string) => {
     try {
-      setIsAuthenticated(true)
-      return
-      // Replace with your backend endpoint
-      const response = await fetch("/api/verify-token", {
-        method: "POST",
+      const endpoint = API_CONFIG.endpoints.verify_token
+      const response = await fetch(getApiUrl(endpoint), {
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: `${token}`,
         },
       })
-
       if (response.ok) {
         setIsAuthenticated(true)
       } else {
