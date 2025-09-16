@@ -1,7 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  async headers() {
+const nextConfig = {
+    async headers() {
         return [
             {
                 source: "/api/:path*",
