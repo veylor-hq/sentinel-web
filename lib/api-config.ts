@@ -5,7 +5,7 @@ export const API_CONFIG = {
     login: "/api/public/auth/signin",
     register: "/api/public/auth/signup",
     dashboard: "/api/private/dashboard/",
-    verify_token: "/api/public/auth/verify/",
+    verify_token: "/api/public/auth/verify",
     missions: "/api/private/mission/",
     mission_details: (id: string) => `/api/private/mission/${id}`,
     proceed_step: (missionId: string) => `/api/private/step/proceed/${missionId}`,
