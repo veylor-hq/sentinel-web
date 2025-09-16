@@ -1,9 +1,9 @@
 export const API_CONFIG = {
-  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL || "http://192.168.1.193:8001",
+  baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL || "https://sentinel-api.ihorsavenko.com",
 
   endpoints: {
-    login: "/api/public/auth/signin/",
-    register: "/api/public/auth/signup/",
+    login: "/api/public/auth/signin",
+    register: "/api/public/auth/signup",
     dashboard: "/api/private/dashboard/",
     verify_token: "/api/public/auth/verify/",
     missions: "/api/private/mission/",
