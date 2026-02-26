@@ -20,7 +20,7 @@ function loadHQ(): [number, number] {
       if (Array.isArray(parsed) && parsed.length === 2) return parsed as [number, number]
     }
   } catch { }
-  return [30.5234, 50.4501] // Default: Kyiv
+  return [30.5234, 50.4501]
 }
 
 interface DashboardProps { onLogout: () => void }
