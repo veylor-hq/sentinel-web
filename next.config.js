@@ -1,4 +1,5 @@
 const nextConfig = {
+    basePath: '/app',
     async headers() {
         return [
             {
